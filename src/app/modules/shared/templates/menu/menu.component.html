@@ -1,0 +1,211 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a routerLink="admin/dashboard" class="brand-link">
+      <img src="../../../../../assets/img/logi.png"
+           alt="AdminLTE Logo"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Admin</span>
+    </a>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a routerLink="admin/dashboard" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                 Home
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a routerLink="admin/dashboard" class="nav-link">
+              <i class="nav-icon fa fa-shopping-cart"></i>
+              <p>
+                Orders
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a  routerLink="admin/new-orders" class="nav-link">
+                  <i class="far fa-bell nav-icon"></i>
+                  <p>New Orders</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="admin/open-orders">
+                  <i class="fa fa-folder-open nav-icon"></i>
+                  <p>Open Orders</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link" routerLink="admin/complete-closed-orders">
+                  <i class="fa fa-folder-plus  nav-icon"></i>
+                  <p>Complete Closed</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="admin/incomplete-closed-orders">
+                  <i class="nav-icon fa fa-folder-minus"></i>
+                  <p>Incomplete Closed</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link" routerLink="admin/all-orders">
+                    <i class="fas fa-shopping-basket nav-icon"></i>
+                  <p>All Orders</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+    
+          <li class="nav-item has-treeview">
+            <a  class="nav-link">
+              <i class="nav-icon fa fa-archive"></i>
+              <p>
+                Products
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="far fa-eye-slash nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="fas fa-edit nav-icon"></i>
+                  <p>Update</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="fas fa-times nav-icon"></i>
+                  <p>Remove</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a class="nav-link">
+                <i class="nav-icon fa fa-barcode"></i>
+              <p>
+                Sales
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="far fa-eye-slash nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="nav-icon fas fa-cart-plus"></i>
+                  <p>Adjust</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+           <li class="nav-item has-treeview">
+            <a class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Reports
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a id="view-governors" class="nav-link">
+                      <i class="fas fa-calendar-day nav-icon"></i>
+                      <p>Today</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-calendar-week"></i>
+                      <p>Last One Week</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-calendar-alt nav-icon"></i>
+                      <p>Last One Month</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  class="nav-link">
+                      <i class="fas fa-calendar-check nav-icon"></i>
+                      <p>Last One Year</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a id="edit-governors" class="nav-link">
+                      <i class="fas fa-chart-bar nav-icon"></i>
+                      <p>General Report</p>
+                    </a>
+                  </li>
+            </ul>
+          </li>
+           <li class="nav-item has-treeview">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Customers
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a id="view-users" class="nav-link">
+                  <i class="far fa-eye-slash nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="add-user" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="edit-user" class="nav-link">
+                  <i class="far fa-edit nav-icon"></i>
+                  <p>Edit</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+  
+          <li class="nav-item">
+            <a id="settingss" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Settings
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
