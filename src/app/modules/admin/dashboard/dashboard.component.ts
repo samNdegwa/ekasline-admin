@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  openOders;
+  openOders
   newOrders;
   closedOrders;
   allProducts;
