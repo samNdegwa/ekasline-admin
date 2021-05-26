@@ -1,0 +1,280 @@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Order Number {{orderNumber}} 
+                        <span style="float: right;">
+                            <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#pay-Modal" title="Make Payment"><i class="fa fa-barcode"></i> </button>&nbsp;
+                            <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#approve-Modal" title="Approve"><i class="fa fa-thumbs-up"></i></button>&nbsp;
+                            <button class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#contact-Modal" title="Contact Customer"><i class="fa fa-comments"></i></button>&nbsp;
+                            <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#reject-Modal" title="Reject"><i class="fa fa-times-circle"></i> </button>&nbsp;
+                        </span>
+                        
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="card">
+                                <div class="card-header" style="background-color: antiquewhite;">
+                                    <h5 class="card-title">Order Details </h5>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            Status: <span class="badge badge-info">Pending</span>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            Balance: <span class="badge badge-secondary">{{orderDetails.amount_due-payMent.totals[0].total | currency:'KES '}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            Amount Due:  <span class="badge badge-danger">{{orderDetails.amount_due | currency:'KES '}}</span>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                           Amount Paid: <span class="badge badge-success">{{payMent.totals[0].total | currency:'KES '}}</span>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                           <hr>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-12">
+                                            <h5>Products Odered</h5>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Image</th><th>Name</th><th>Qts</th><th>Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor = "let p of products.products">
+                                                        <td>
+                                                        <img src="{{serverURL+'/'+p.image}}" alt="{{p.name}}" class="card-img-top" style="cursor: pointer;width:50px;">
+                                                        </td>
+                                                        <td>{{p.name}}</td>
+                                                        <td>{{p.quantityOrdered}}</td>
+                                                        <td>{{p.price}}</td>
+
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                           <hr>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        
+                                          <button class="btn btn-outline-danger btn-sm">Download Receipts</button>
+                                          <button class="btn btn-outline-warning btn-sm">Download Delivery Notes</button>
+                                        
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header" style="background-color: antiquewhite;">
+                                <h5 class="card-title">Order Address </h5>
+                                </div>
+                                <div class="card-body">
+                                    <b>Customer Name:</b> {{userDetails.fname+' '+userDetails.lname}}<br>
+                                    <b>Phone Number:</b> {{userDetails.phoneNumber}}<br>
+                                    <b>Email Address:</b>{{userDetails.email}}<br>
+                                    <b>Country:</b>{{userDetails.country}}<br>
+                                    <b>County:</b>{{orderAddress.county_to_send}}<br>
+                                    <b>Sub County:</b>{{orderAddress.sub_county}}<br>
+                                    <b>City:</b>{{orderAddress.city}}<br>
+                                    <b>Postal Address:</b>{{orderAddress.postal_address}}<br>
+                                    <b>Coment: </b>{{orderAddress.description}}
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" style="background-color: antiquewhite;">
+                                <h5 class="card-title">{{userDetails.fname+' '+userDetails.lname}} Previous Orders </h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th><th>Amount</th><th>Status</th><th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor='let po of previousOrders.orders'>
+                                                <td>{{po.id}}</td>
+                                                <td>{{po.amount_due | currency:'KES '}}</td>
+                                                <td>
+                                                    <span [class]="po.status ? 'badge badge-success' : 'badge badge-secondary'">
+                                                    {{po.status? 'Complete' : 'Incomplete'}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-outline-info btn-sm btnSelect"> <i class="fa fa-eye-slash"></i> </button>
+                                                </td>
+                                                    
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+            
+               </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="pay-Modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Order Number {{orderNumber}} Payments</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form [formGroup]="registerForm" (ngSubmit)="submitPayment()">
+              
+          Enter the amount received to clear {{orderDetails.amount_due-orderDetails.amount_paid | currency:'KES '}} Balance
+           <input type="number" name="amount" placeholder=""  class="form-control" required id="amount" formControlName="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }">
+           <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+            <div *ngIf="f.amount.errors.required">Amount is required</div>
+            </div>
+            <br>
+            Mode of Payment
+            <select name="mode" id="mode" formControlName='mode' [ngClass]="{ 'is-invalid': submitted && f.mode.errors }" class="form-control">
+              <option value="">---Select---</option>
+              <option value="Mpesa">Mpesa</option>
+              <option value="Bank Deposit">Bank Deposit</option>
+            </select>
+            <!-- <input type="text" name="mode" placeholder=""  class="form-control" required id="mode" formControlName="mode" [ngClass]="{ 'is-invalid': submitted && f.mode.errors }"> -->
+            <div *ngIf="submitted && f.mode.errors" class="invalid-feedback">
+             <div *ngIf="f.mode.errors.required">Mode of payment is required</div>
+            </div>
+            <br>
+            Reference
+            <input type="text" name="reference" placeholder=""  class="form-control" required id="reference" formControlName="reference" [ngClass]="{ 'is-invalid': submitted && f.reference.errors }">
+            <div *ngIf="submitted && f.reference.errors" class="invalid-feedback">
+             <div *ngIf="f.reference.errors.required">Mode of payment is required</div>
+            </div>
+           <br>
+           <button type="submit" class="btn btn-success btn-sm">Approve</button>
+          </form>
+
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Approval Modal -->
+<div class="modal fade" id="approve-Modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Order Number {{orderNumber}} Approval</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+         Confirm this order before approving it for Delivery<br><br>
+         Current Balance: {{orderDetails.amount_due-orderDetails.amount_paid | currency:'KES '}}
+
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="approveOrder()">Approve</button>&nbsp;
+        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+  <!-- Customer Contact Modal -->
+<div class="modal fade" id="contact-Modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Contact {{userDetails.fname+' '+userDetails.lname}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+   <!-- Customer Contact Modal -->
+<div class="modal fade" id="reject-Modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Reject Order {{orderNumber}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+

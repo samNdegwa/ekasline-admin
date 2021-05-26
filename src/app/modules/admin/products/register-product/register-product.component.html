@@ -1,0 +1,141 @@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Register New Product <i style="float: right;"><button class="btn btn-outline-primary btn-sm">Add Category</button><button class="btn btn-outline-secondary btn-sm">Add Sub Category</button></i></h5>
+                </div>
+                <div class="card-body">
+                  
+                    <form #myform="ngForm">
+                        
+                      <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <b>Select Category</b>
+                            <select class="form-control" id="cat" name="cat" [(ngModel)]="cat" (change)="onChangeCategory($event)">
+                                <option selected disabled value="">---Select---</option>
+                                <option *ngFor="let c of allCategories.categories" value="{{c.id}}">{{c.title}}</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <b>Select Sub Category</b>
+                                <select class="form-control" id="subcat" name="subcat" [(ngModel)]="subcat">
+                                    <option selected disabled value="">---Select---</option>
+                                    <option  *ngFor="let s of Subcategories" value="{{s.id}}" >{{s.name}}</option>
+                                </select>
+                                </div>
+                        </div>
+
+
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <hr>
+                          </div>
+                      </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <b>Product Name:</b>
+                                <input type="text" class="form-control" placeholder="Product Name" id="name" name="name" [(ngModel)]="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Product Name is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Manufracturer</b>
+                                <input type="text" class="form-control" placeholder="Manufracturer" id="manufacturer" name="manufacturer" [(ngModel)]="manufacturer" [ngClass]="{ 'is-invalid': submitted && f.manufacturer.errors }"/>
+                                <div *ngIf="submitted && f.manufacturer.errors" class="invalid-feedback">
+                                    <div *ngIf="f.manufacturer.errors.required">manufacturer Name is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Packaging</b>
+                                <input type="text" class="form-control" placeholder="Packaging" id="packaging" name="packaging" [(ngModel)]="packaging" [ngClass]="{ 'is-invalid': submitted && f.packaging.errors }"/>
+                                <div *ngIf="submitted && f.packaging.errors" class="invalid-feedback">
+                                    <div *ngIf="f.packaging.errors.required">Packaging Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Price</b>
+                                <input type="number" class="form-control" placeholder="Current Price" id="price" name="price" [(ngModel)]="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }"/>
+                                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                    <div *ngIf="f.price.errors.required">Price is required</div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <b>Short Description</b>
+                                <input type="text" class="form-control" placeholder="Short Description" id="short_desc" name="short_desc" [(ngModel)]="short_desc" [ngClass]="{ 'is-invalid': submitted && f.short_desc.errors }"/>
+                                <div *ngIf="submitted && f.short_desc.errors" class="invalid-feedback">
+                                    <div *ngIf="f.short_desc.errors.required">Short Description is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Package</b>
+                                <input type="text" class="form-control" placeholder="Package"  id="packages" name="packages" [(ngModel)]="packages" [ngClass]="{ 'is-invalid': submitted && f.packages.errors }"/>
+                                <div *ngIf="submitted && f.packages.errors" class="invalid-feedback">
+                                    <div *ngIf="f.packages.errors.required">Package is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Manufacture Part</b>
+                                <input type="text" class="form-control" placeholder="Manufacture part" id="man_part" name="man_part" [(ngModel)]="man_part" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                                <div *ngIf="submitted && f.man_part.errors" class="invalid-feedback">
+                                    <div *ngIf="f.man_part.errors.required">Manufacture Part is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Quantity</b>
+                                <input type="text" class="form-control" placeholder="quantity"  id="quantity" name="quantity" [(ngModel)]="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"/>
+                                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                                    <div *ngIf="f.quantity.errors.required">Quantity is required</div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <b>Full Description</b>
+                                <textarea class="form-control" id="full_desc" name="full_desc" [(ngModel)]="full_desc" [ngClass]="{ 'is-invalid': submitted && f.full_desc.errors }">
+
+                                </textarea>
+                                <div *ngIf="submitted && f.full_desc.errors" class="invalid-feedback">
+                                    <div *ngIf="f.full_desc.errors.required">Full Description is required</div>
+                                    </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                           
+                           
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group img-thumbnail" > 
+                                <b>Featured Image</b><br>
+                                <img [src]="imageUrl" width="100" height="100">
+                                <input type="file"  (change)="onFileChanged($event)" class="form-control" id="image" name="image" [ngClass]="{ 'is-invalid': submitted && f.image.errors }" />
+                                <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+                                    <div *ngIf="f.image.errors.required">Featured Image is Required</div>
+                                    </div>
+                            </div>
+                           
+                        </div>
+
+                     </div>
+                    <button (click)="submitRegister(myform)" class="btn btn-primary">Save</button>
+                    </form>
+         
+                </div>
+        </div>
+      </div>
+    </div>
+</div>

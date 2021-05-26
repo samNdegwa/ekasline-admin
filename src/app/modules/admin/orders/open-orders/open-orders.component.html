@@ -10,9 +10,8 @@
             <thead>
             <tr>
                 <th>Date</th>
-                <th>Order Number</th>
+                <th>Order Numbers</th>
                 <th>Amount Due</th>
-                <th>Amount Paid</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -22,12 +21,10 @@
                    <td>{{o.date_placed}}</td>
                    <td>{{o.id}}</td>
                    <td>{{o.amount_due}}</td>
-                   <td>{{o.amount_paid}}</td>
-                   <td>{{o.status}}</td>
-                   <td><button class="btn btn-outline-info btn-sm"> <i class="fa fa-cog"></i> </button></td>
+                   <td>Open</td>
+                   <td><a [routerLink]="['/admin/new-orders/54']"><button class="btn btn-outline-info btn-sm btnSelect"> <i class="fa fa-cog"></i> </button></a></td>
                </tr>
            </tbody>
-
         </table>
         </div>
         </div>

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   SERVER_URL : 'http://localhost/ekasline-backend/api'
+ // SERVER_URL : 'https://ekastech.com/store_backend/api'
 };
 
 /*

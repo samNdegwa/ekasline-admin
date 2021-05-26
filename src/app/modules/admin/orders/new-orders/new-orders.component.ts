@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
+import { PaymentsService } from 'src/app/services/payments.service';
 
-
+declare var jquery: any;
+declare var $: any;
 @Component({
   selector: 'app-new-orders',
   templateUrl: './new-orders.component.html',
@@ -10,13 +12,14 @@ import { OrdersService } from 'src/app/services/orders.service';
 export class NewOrdersComponent implements OnInit {
   orders;
 
-  constructor(private orderService: OrdersService) { }
+  constructor(private orderService: OrdersService, private payService: PaymentsService) { }
 
   ngOnInit(): void {
     this.orderService.getNewOrders().subscribe(orders => {
-      console.log(orders);
       this.orders = orders;
    })
   }
 
+
 }
+

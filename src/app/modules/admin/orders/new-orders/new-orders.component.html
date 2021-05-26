@@ -3,28 +3,26 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">New Orders</h5>
+                    <h5 class="card-title">New Orders </h5>
                 </div>
                 <div class="card-body">
-             <table class="table table-bordered ">
+             <table class="table table-bordered " id="myTable">
             <thead>
             <tr>
                 <th>Date</th>
                 <th>Order Number</th>
                 <th>Amount Due</th>
-                <th>Amount Paid</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
            </thead>
            <tbody>
                <tr *ngFor="let o of orders.orders">
-                   <td>{{o.date_placed}}</td>
+                   <td id="currenId">{{o.date_placed}}</td>
                    <td>{{o.id}}</td>
                    <td>{{o.amount_due}}</td>
-                   <td>{{o.amount_paid}}</td>
-                   <td>{{o.status}}</td>
-                   <td><button class="btn btn-outline-info btn-sm"> <i class="fa fa-cog"></i> </button></td>
+                   <td><span class="badge badge-success">New</span></td>
+                   <td><a routerLink="{{o.id}}"><button class="btn btn-outline-info btn-sm btnSelect"> <i class="fa fa-cog"></i> </button></a></td>
                </tr>
            </tbody>
 

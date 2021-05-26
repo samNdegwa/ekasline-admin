@@ -1,0 +1,206 @@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 >Products
+                        <span style="float: right;">
+                           <a routerLink="/admin/product-register"> <button class="btn btn-outline-primary btn-sm" title="Add Product"><i class="fas fa-plus-square"></i> </button></a>&nbsp;
+                        </span>
+                        
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-8"></div>
+                        <div class="col-sm-4">
+                            <form (ngSubmit)="submitSearch()">
+                                <input type="text" name="txt_serch_product" placeholder="Enter name to search" class="form-control" id="txt_serch_product"[(ngModel)]="searchValue">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered " id="myTable">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                               </thead>
+                               <tbody>
+                                   <tr *ngFor="let p of  products.products">
+                                       <td id="currenId">{{p.id}}</td>
+                                       <td> <img src="{{url+'/'+p.image}}" alt="{{p.name}}" class="card-img-top" style="cursor: pointer;width:50px;"></td>
+                                       <td>{{p.name}}</td>
+                                       <td>{{p.quantity}}</td>
+                                       <td>{{p.price}}</td>
+                                       <td><button class="btn btn-outline-info btn-sm btnSelect"> <i class="fa fa-eye-slash"></i> </button>
+                                        <button class="btn btn-outline-danger btn-sm btnSelect" (click)="getId(p.id)" data-toggle="modal" data-target="#edit-product" title="Edit Product"> <i class="fa fa-edit"></i> </button>
+                                    </td>
+                                   </tr>
+                               </tbody>
+                    
+                            </table>
+                            <h5><span style="float: right;">
+                                <a (click)="previousPage()"><i class="fas fa-angle-double-left"></i></a>
+                                &nbsp;{{current_page+1}}&nbsp;
+                               <a (click)="nextPage()"> <i class="fas fa-angle-double-right"></i></a>
+                            </span></h5>
+                        </div>
+                    </div>
+            
+               </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!-- Modal for viewing products -->
+<!-- Payment Modal -->
+<div class="modal fade" id="edit-product">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">#{{productId}} Product Edit <i class="fa fa-edit"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form [formGroup]="productEditForm" (ngSubmit)="submitProductUpdate()">
+               <div class="row">
+                   <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Name</label>
+
+                          <input type="text" class="form-control" formControlName="prodName" id="prodName" name="prodName" >
+                          <div *ngIf="submitted && f.prodName.errors" class="invalid-feedback">
+                            <div *ngIf="f.prodName.errors.required">Amount is required</div>
+                            </div>
+                      </div>
+                   </div>
+                   
+               </div>
+               <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Quantity</label>
+
+                          <input type="number" class="form-control" formControlName="quantity">
+                          
+                      </div>
+                       
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Price</label>
+   
+                          <input type="number" class="form-control" formControlName="price">
+                     
+                      </div>
+                   </div>
+
+               </div>
+
+               
+               <div class="row">
+                
+                <div class="col-md-12">
+                 <div class="form-group">
+                     <label>Manufacturer</label>
+
+                       <input type="text" class="form-control" formControlName="manufacturer">
+                  
+                   </div>
+                    
+             </div>
+            </div>
+
+         
+            <div class="row">
+                <div class="col-md-6">
+                 <div class="form-group">
+                     <label>Manufacturer Part</label>
+
+                       <input type="text" class="form-control" formControlName="mfr_part">
+                  
+                   </div>
+                </div>
+                <div class="col-md-6">
+                 <div class="form-group">
+                     <label>Packaging</label>
+
+                       <input type="text" class="form-control" formControlName="packaging">
+                  
+                   </div>
+                    
+             </div>
+            </div>
+
+           
+              <div class="row">
+                <div class="col-md-12">
+                 <div class="form-group">
+                     <label>Short Description</label><textarea class="form-control" formControlName="short_desc"></textarea>
+                  
+                   </div>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Full Description</label>
+   
+                         <textarea class="form-control" formControlName="description"></textarea>
+                     
+                      </div>
+                       
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <hr>
+                 <img [src]="imageUrl" alt="" style="height: 100px;" class="img-thumbnail">
+                 
+                </div>
+                <div class="col-md-6"> 
+                    <hr>
+                    <div class="form-group">
+                    <label>Change Featured Image:</label>
+                    <input type="file"  (change)="onFileChanged($event)" class="form-control" id="image" name="image" #myInput/>
+    
+                    </div>
+                    <br>
+                    
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </div>
+            <h4><button type="submit" class="btn btn-success" style="float: right;"><i class="fa fa-save"></i> Save Changes</button></h4>
+            </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-danger btn-sm" data-dismiss="modal" >Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+

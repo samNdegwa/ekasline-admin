@@ -12,10 +12,11 @@ export class CompleteClosedOrdersComponent implements OnInit {
   constructor(private orderService: OrdersService) { }
 
   ngOnInit(): void {
-    this.orderService.getOpenOrders().subscribe(orders => {
+    this.orderService.getCompleteClosedOrders().subscribe(orders => {
       console.log(orders);
       this.orders = orders;
    })
   }
+
 
 }

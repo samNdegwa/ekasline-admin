@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { OrdersService } from 'src/app/services/orders.service';
+import { PaymentsService } from 'src/app/services/payments.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +11,11 @@ import { OrdersService } from 'src/app/services/orders.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+  openOders;
+  newOrders;
+  closedOrders;
+  allProducts;
+  total_products;
   // Array of different segments in chart
   lineChartData: ChartDataSets[] = [
     { data: [201563, 210232, 150212, 200121, 121221, 229123, 239989], label: 'Requested Orders' },
@@ -54,10 +60,27 @@ export class DashboardComponent implements OnInit {
     console.log(event, active);
   }
 
-  constructor(private orderService: OrdersService) { }
+  constructor(private orderService: OrdersService, private payService: PaymentsService,private prodService: ProductService ) { }
 
   ngOnInit(): void {
-    
+    localStorage.setItem('cp','0');
+   this.orderService.getOpenOrders().subscribe(orders =>{
+     this.openOders = orders
+   });
+
+   this.prodService.productsCount().subscribe(data =>{
+    this.total_products = data;
+    this.total_products = this.total_products;
+    localStorage.setItem('tps',this.total_products);
+  })
+
+   this.orderService.getNewOrders().subscribe(nrd =>{
+     this.newOrders = nrd;
+   })
+
+   this.orderService.getCompleteClosedOrders().subscribe(cr =>{
+     this.closedOrders = cr;
+   })
   }
 
 }
