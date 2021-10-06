@@ -41,7 +41,7 @@ export class RegisterProductComponent implements OnInit {
     this.catService.getCategories().subscribe(cat =>{
      this.allCategories = cat;
     }); 
-   
+  
   }
 
   onFileChanged(event) {
@@ -49,7 +49,7 @@ export class RegisterProductComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     reader.readAsDataURL(this.selectedFile);
     reader.onload = (event: any) => {
-      this.imageUrl = event.target.result
+      this.imageUrl = event.target.result;
     }
   
  }
@@ -71,6 +71,7 @@ export class RegisterProductComponent implements OnInit {
   const uploadData = new FormData();
   uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
   const cat: number = this.cat;
+  
   const subcat: number = this.subcat;
   const name: string = this.name;
   const manufacturer: string = this.manufacturer; 
